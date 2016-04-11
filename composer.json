@@ -1,0 +1,23 @@
+{
+    "name": "lucascherifi/gitascii",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas CHERIFI",
+            "email": "lucas@cherifi.info"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kasifi\\Gitascii\\": "src"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/var-dumper": "^3.0",
+        "symfony/console": "^3.0",
+        "symfony/finder": "^3.0",
+        "symfony/process": "^3.0",
+        "symfony/yaml": "^3.0"
+    }
+}
