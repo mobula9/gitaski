@@ -11,7 +11,7 @@ class AsciiHelper
      *
      * @return string
      */
-    static public function renderSymbol($symbol)
+    public static function renderSymbol($symbol)
     {
         $output = '';
         foreach ($symbol as $row) {
@@ -47,7 +47,7 @@ class AsciiHelper
      * @return array
      * @throws Exception
      */
-    static public function generateSymbolFromAsciiString($ascii, $charMapping)
+    public static function generateSymbolFromAsciiString($ascii, $charMapping)
     {
         $symbol = [];
         $lines = explode("\n", $ascii);
@@ -73,7 +73,7 @@ class AsciiHelper
      *
      * @return string
      */
-    static public function generateAsciiFromText($string)
+    public static function generateAsciiFromText($string)
     {
         $lineBreaks = 0;
         $font = 'banner3';
@@ -108,7 +108,7 @@ class AsciiHelper
      * @return array
      * @throws Exception
      */
-    static public function generateSymbolFromJson($parsedJson, $charMapping)
+    public static function generateSymbolFromJson($parsedJson, $charMapping)
     {
         $lines = $parsedJson['layers'][0]['rows'];
 
@@ -151,7 +151,7 @@ class AsciiHelper
      *
      * @return int
      */
-    static public function getMappedValue($char, $charMapping)
+    public static function getMappedValue($char, $charMapping)
     {
         $value = 0;
         if (isset($charMapping[$char])) {

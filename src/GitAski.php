@@ -10,6 +10,12 @@ class GitAski
     /** @var SymfonyStyle */
     private $io;
 
+    /** @var GitProcessor */
+    private $gitProcessor;
+
+    /** @var DateTime */
+    private $lastSunday;
+
     /**
      * Gitaski constructor.
      *
