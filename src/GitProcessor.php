@@ -31,6 +31,9 @@ class GitProcessor
     /** @var string */
     private $githubRepositoryUrl;
 
+    /** @var string */
+    private $workspacePath;
+
     /**
      * GitHelper constructor.
      *

@@ -3,7 +3,7 @@
 namespace Kasifi\Gitaski\Command;
 
 use Exception;
-use Kasifi\Gitaski\Gitaski;
+use Kasifi\Gitaski\GitAski;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -62,9 +62,10 @@ class GitaskiCommand extends Command
             )
             ->addOption(
                 'force',
-                false,
+                null,
                 InputOption::VALUE_NONE,
-                'If set, the commits will be really pushed to the repository URL, else it run in dry-mode mode.'
+                'If set, the commits will be really pushed to the repository URL, else it run in dry-mode mode.',
+                false
             );
     }
 
@@ -93,7 +94,7 @@ class GitaskiCommand extends Command
         }
         $commitMessages = Yaml::parse(file_get_contents($commitsMessageYmlPath));
 
-        $gitaski = new Gitaski($force, $githubRepositoryUrl, $inputFilePath, $outputFilename, $commitMessages);
+        $gitaski = new GitAski($force, $githubRepositoryUrl, $inputFilePath, $outputFilename, $commitMessages);
         $gitaski->setIo($io);
 
         $useText = $input->getOption('use_text');
