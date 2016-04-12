@@ -1,6 +1,9 @@
 {
     "name": "lucascherifi/gitaski",
     "license": "MIT",
+    "bin": [
+        "app/console"
+    ],
     "authors": [
         {
             "name": "Lucas CHERIFI",
