@@ -16,7 +16,9 @@ $ composer global require lucascherifi/gitaski
 ```
 Check that "It works!": `gitaski run --help` else take a look at the full documentation [here](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md).
 
-#### 2) Create an empty git repository: [click here](https://github.com/new).
+#### 2) Create an empty git repository
+
+[Just click here](https://github.com/new).
 
 #### 3) Run the command:
 
