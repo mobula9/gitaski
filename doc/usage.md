@@ -1,13 +1,13 @@
 # Quick example
 
 ```bash
-$ gitaski gitaski git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Hello --force
+$ gitaski run git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Hello --force
 ```
 
 # Command usage
 
 ```bash
-$ gitaski gitaski --help
+$ gitaski run --help
 ```
 
 ```bash
