@@ -4,9 +4,8 @@ namespace Kasifi\Gitaski;
 
 use DateTime;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Yaml\Yaml;
 
-class Gitaski
+class GitAski
 {
     /** @var SymfonyStyle */
     private $io;
@@ -22,11 +21,11 @@ class Gitaski
      */
     public function __construct($force, $githubRepositoryUrl, $inputFilePath, $outputFilename, array $commitMessages)
     {
-        $this->gitHelper = new GitHelper($githubRepositoryUrl, $force, $inputFilePath, $outputFilename, $commitMessages);
+        $this->gitProcessor= new GitProcessor($githubRepositoryUrl, $force, $inputFilePath, $outputFilename, $commitMessages);
 
         $date = new DateTime();
         $date->setTime(12, 0, 0);
-        $this->lastSunday = $this->gitHelper->getPreviousSunday($date);
+        $this->lastSunday = $this->gitProcessor->getPreviousSunday($date);
     }
 
     /**
@@ -35,12 +34,12 @@ class Gitaski
     public function setIo($io)
     {
         $this->io = $io;
-        $this->gitHelper->setIo($this->io);
+        $this->gitProcessor->setIo($this->io);
     }
 
     public function writeText($str)
     {
-        $this->gitHelper->initLocalRepository();
+        $this->gitProcessor->initLocalRepository();
 
         $asciiString = AsciiHelper::generateAsciiFromText($str);
 
@@ -66,7 +65,7 @@ class Gitaski
     }
 
     public function clean() {
-        $this->gitHelper->clean();
+        $this->gitProcessor->clean();
     }
 
     /**
@@ -76,6 +75,6 @@ class Gitaski
     {
         $this->io->note('Symbol to draw');
         $this->io->write(AsciiHelper::renderSymbol($symbol));
-        $this->gitHelper->writeSymbol($symbol, $this->lastSunday);
+        $this->gitProcessor->writeSymbol($symbol, $this->lastSunday);
     }
 }

@@ -73,7 +73,7 @@ class AsciiHelper
      *
      * @return string
      */
-    public static function generateAsciiFromText($string)
+    static public function generateAsciiFromText($string)
     {
         $lineBreaks = 0;
         $font = 'banner3';
