@@ -7,29 +7,33 @@ The purpose of this repository is quite stupid. It makes you a hardcoder. And yo
 
 Easy to use, just type a command to make your github commits list a funky thing.
 
+
+## Quick install
+
+1. Install:
+```bash
+$ composer global require lucascherifi/gitaski
+```
+Check that "It works!": `gitaski run --help` else take a look at the full documentation [here](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md).
+
+2. Create an empty git repository: [click here](https://github.com/new).
+
+3. Run the command:
+
 ```bash
 $ gitaski git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Enjoy --force
 ```
+Adapt with you own values ("YOUR_PROFILE", "AN_EMPTY_REPOSITORY_ALREADY_CREATED" and "Enjoy").
 
 [![Enjoy](https://github.com/lucascherifi/gitaski/blob/master/doc/enjoy.png)](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 
 Make good use and do not hesitate to contribute to this project.
 
-Installation
-------------
-
-- [Installation documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
-
-Usage
------
-
-- [Usage documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/usage.md)
-
-
-Contributing
-------------
-
-- [Contributing documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/contributing.md)
+More documentation
+------------------
+- [Install](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
+- [Usage](https://github.com/lucascherifi/gitaski/blob/master/doc/usage.md)
+- [Contributing](https://github.com/lucascherifi/gitaski/blob/master/doc/contributing.md)
 
 License
 -------
