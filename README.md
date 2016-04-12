@@ -1,4 +1,4 @@
-[![Latest Stable Version](https://poser.pugx.org/lucascherifi/gitaski/v/stable)](https://packagist.org/packages/lucascherifi/gitaski) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lucascherifi/PdfParserBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lucascherifi/PdfParserBundle/?branch=master) [![Build Status](https://travis-ci.org/lucascherifi/PdfParserBundle.svg?branch=master)](https://travis-ci.org/lucascherifi/PdfParserBundle) [![License](https://poser.pugx.org/lucascherifi/gitaski/license)](https://packagist.org/packages/lucascherifi/gitaski)
+[![Latest Stable Version](https://poser.pugx.org/lucascherifi/gitaski/v/stable)](https://packagist.org/packages/lucascherifi/gitaski) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lucascherifi/gitaski/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lucascherifi/gitaski/?branch=master) [![Build Status](https://travis-ci.org/lucascherifi/gitaski.svg?branch=master)](https://travis-ci.org/lucascherifi/gitaski) [![License](https://poser.pugx.org/lucascherifi/gitaski/license)](https://packagist.org/packages/lucascherifi/gitaski)
 
 Gitaski
 ===============
@@ -21,13 +21,13 @@ Installation
 Usage
 -----
 
-- [Usage documentation](https://github.com/lucascherifi/PdfParserBundle/blob/master/doc/command.md)
+- [Usage documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/command.md)
 
 
 Contributing
 ------------
 
-- [Contributing documentation](https://github.com/lucascherifi/PdfParserBundle/blob/master/doc/contributing.md)
+- [Contributing documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/contributing.md)
 
 License
 -------
