@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Yaml\Yaml;
 
-class GitaskiCommand extends Command
+class RunCommand extends Command
 {
     /**
      * return void
@@ -20,7 +20,7 @@ class GitaskiCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('gitaski')
+            ->setName('run')
             ->setDescription('Build Github ASCII art')
             ->addArgument(
                 'github_repository_url',
