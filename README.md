@@ -21,7 +21,7 @@ Installation
 Usage
 -----
 
-- [Usage documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/command.md)
+- [Usage documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/usage.md)
 
 
 Contributing
