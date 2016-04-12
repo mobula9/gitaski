@@ -8,7 +8,7 @@ The purpose of this repository is quite stupid. It makes you a hardcoder. And yo
 Easy to use, just type a command to make your github commits list a funky thing.
 
 ```bash
-$ php app/console gitaski git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Enjoy --force
+$ gitaski git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Enjoy --force
 ```
 
 [![Enjoy](https://github.com/lucascherifi/gitaski/blob/master/doc/enjoy.png)](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)

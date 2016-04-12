@@ -1,13 +1,13 @@
 # Quick example
 
 ```bash
-$ php app/console gitaski git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Hello --force
+$ gitaski gitaski git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Hello --force
 ```
 
 # Command usage
 
 ```bash
-$ php app/console gitaski --help
+$ gitaski gitaski --help
 ```
 
 ```bash
