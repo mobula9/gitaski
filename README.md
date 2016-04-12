@@ -1,7 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/lucascherifi/gitaski/v/stable)](https://packagist.org/packages/lucascherifi/gitaski) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lucascherifi/gitaski/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lucascherifi/gitaski/?branch=master) [![Build Status](https://travis-ci.org/lucascherifi/gitaski.svg?branch=master)](https://travis-ci.org/lucascherifi/gitaski) [![License](https://poser.pugx.org/lucascherifi/gitaski/license)](https://packagist.org/packages/lucascherifi/gitaski)
 
-Gitaski
-===============
+Gitaski (stupid command)
+========================
 
 The purpose of this repository is quite stupid. It makes you a hardcoder. And you can giggle your friends.
 
