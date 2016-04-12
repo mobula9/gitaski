@@ -1,52 +1,88 @@
 <?php
 
-namespace Kasifi\Gitascii;
+namespace Kasifi\Gitaski;
 
 use DateInterval;
 use DateTime;
 use Exception;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Process\Process;
 
 class GitHelper
 {
-    const WORKSPACE_DIRECTORY = '../test';
-    
-    /** @var OutputInterface */
-    private $output;
+    /** @var bool */
+    private $force;
 
-    private $commitContentCursor = 0;
+    /** @var SymfonyStyle */
+    private $io;
 
+    private $splitContentCursor = 0;
+
+    /** @var array */
     private $commitMessages;
 
-    private $resourcesPath;
+    /** @var array */
+    private $splitContent = [];
 
-    private $commitContent;
-    private $commitContentArray  = [];
+    /** @var string */
+    private $outputFilename;
 
-    public function __construct(OutputInterface $output, $resourcesPath)
-    {
-        $this->output = $output;
-        $this->commitMessages = Yaml::parse(file_get_contents($this->resourcesPath.'/commit-messages.yml'));
-        $commitContent = file_get_contents($this->resourcesPath.'/sample.md');
-        $this->commitContent = explode(' ', $commitContent);
-        $this->workspacePath = realpath(__DIR__ . '/' . self::WORKSPACE_DIRECTORY);
+    /** @var string */
+    private $githubRepositoryUrl;
+
+    /**
+     * GitHelper constructor.
+     *
+     * @param string  $githubRepositoryUrl
+     * @param boolean $force
+     * @param string  $inputFilePath
+     * @param string  $outputFilename
+     * @param array   $commitMessages
+     */
+    public function __construct(
+        $githubRepositoryUrl,
+        $force,
+        $inputFilePath,
+        $outputFilename,
+        array $commitMessages
+    ) {
+        $this->githubRepositoryUrl = $githubRepositoryUrl;
+        $this->force = $force;
+        $this->outputFilename = $outputFilename;
+        $this->commitMessages = $commitMessages;
+        $splitContent = file_get_contents($inputFilePath);
+        $this->splitContent = explode(' ', $splitContent);
+        $workspacePath = sys_get_temp_dir() . '/gitaski' . rand(0, 1000000);
+        mkdir($workspacePath);
+        $this->workspacePath = realpath($workspacePath);
     }
 
+    /**
+     * @return void
+     */
+    public function initLocalRepository()
+    {
+        $this->execCmd('git init && git remote set-url origin ' . $this->githubRepositoryUrl, true);
+    }
+
+    /**
+     * @param DateTime $date
+     */
     public function addCommit(DateTime $date)
     {
-        $filePath = $this->workspacePath . '/' . $this->filePath;
+        $filePath = $this->workspacePath . '/' . $this->outputFilename;
         $message = $this->commitMessages[array_rand($this->commitMessages)];
 
         if (!file_exists($filePath)) {
             touch($filePath);
         }
 
-        $this->commitContentCursor++;
+        $this->splitContentCursor++;
 
-        $content = implode(' ', array_slice($this->commitContentArray, 0, $this->commitContentCursor));
+        $content = implode(' ', array_slice($this->splitContent, 0, $this->splitContentCursor));
 
-        $message = sprintf($message, $this->commitContentArray[$this->commitContentCursor - 1]);
+        $message = sprintf($message, $this->splitContent[$this->splitContentCursor - 1]);
         $message = str_replace('\'', '-', $message);
         $message = str_replace('"', '-', $message);
 
@@ -54,20 +90,47 @@ class GitHelper
 
         $dateStr = $date->format('r');
 
-        $this->execCmd('cd ' . $this->workspacePath . ' && git add ' . $this->filePath . ' && git commit -m \'' . $message . '\' --date="' . $dateStr . '"');
+        $this->execCmd('git add ' . $this->outputFilename . ' && git commit -m \'' . $message . '\' --date="' . $dateStr . '"');
     }
 
-    private function resetGitRepo()
+    public function clean()
     {
-        $this->execCmd('cd ' . $this->workspacePath . ' && rm -rf .git; rm ' . $this->filePath . '; git init && git remote set-url origin ' . $this->githubRepositoryUrl . '');
+        $this->execCmd('rm -rf ' . $this->workspacePath);
     }
 
+    /**
+     * @param DateTime $date
+     *
+     * @return DateTime
+     */
+    public function getPreviousSunday(DateTime $date)
+    {
+        return $this->sub($date, $date->format('w'));
+    }
+
+    /**
+     * @param SymfonyStyle $io
+     */
+    public function setIo(SymfonyStyle $io)
+    {
+        $this->io = $io;
+    }
+
+    /**
+     * @return void
+     */
     private function forcePush()
     {
-        $this->execCmd('cd ' . $this->workspacePath . ' && git push --force --set-upstream origin master');
+        $this->execCmd('git push --force --set-upstream origin master');
     }
 
-    private function writeSymbol($symbol, DateTime $lastSunday)
+    /**
+     * @param array    $symbol
+     * @param DateTime $lastSunday
+     *
+     * @throws Exception
+     */
+    public function writeSymbol($symbol, DateTime $lastSunday)
     {
         $dates = $this->getDatesFromSymbol($symbol, $lastSunday);
         foreach ($dates as $date) {
@@ -77,8 +140,22 @@ class GitHelper
             }
         }
         echo "\n";
+        if ($this->force) {
+            $this->forcePush();
+            $this->io->comment('Git local checkout has been created and pushed to the origin repository. You can now view it online.');
+        } else {
+            $this->io->warning('Git local checkout has been created but not sent. Use --force to really push it to the github account.');
+        }
+        $this->io->success('Done.');
     }
 
+    /**
+     * @param array    $symbol
+     * @param DateTime $lastSunday
+     *
+     * @return array
+     * @throws Exception
+     */
     private function getDatesFromSymbol($symbol, DateTime $lastSunday)
     {
         $dates = [];
@@ -101,11 +178,15 @@ class GitHelper
         }
         ksort($dates);
 
-        //dump($dates);die;
-
         return $dates;
     }
 
+    /**
+     * @param DateTime $date
+     * @param integer  $days
+     *
+     * @return DateTime
+     */
     private function sub(DateTime $date, $days)
     {
         $date = clone $date;
@@ -113,6 +194,12 @@ class GitHelper
         return $date->sub(new DateInterval('P' . $days . 'D'));
     }
 
+    /**
+     * @param DateTime $date
+     * @param integer  $days
+     *
+     * @return DateTime
+     */
     private function add(DateTime $date, $days)
     {
         $date = clone $date;
@@ -120,14 +207,38 @@ class GitHelper
         return $date->add(new DateInterval('P' . $days . 'D'));
     }
 
-    private function execCmd($cmd)
+    /**
+     * @param string $cmd
+     * @param bool   $ignoreErrors
+     *
+     * @throws Exception
+     */
+    private function execCmd($cmd, $ignoreErrors = false)
     {
-        if ($this->output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
-            $this->output->writeln($cmd);
+        $cmd = 'cd ' . $this->workspacePath . ' && ' . $cmd;
+        if ($this->io->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+            $this->io->comment($cmd);
         }
-        $res = `$cmd`;
-        if ($this->output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
-            $this->output->writeln($res);
+        $process = new Process($cmd);
+
+        $process->run(function ($type, $buffer) use ($ignoreErrors) {
+            if (Process::ERR === $type) {
+                if ($ignoreErrors) {
+                    if ($this->io->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+                        $this->io->comment($buffer);
+                    }
+                } else {
+                    $this->io->error($buffer);
+                }
+            } else {
+                if ($this->io->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+                    $this->io->comment($buffer);
+                }
+            }
+        });
+
+        if (!$ignoreErrors && !$process->isSuccessful()) {
+            throw new Exception($process->getOutput() . $process->getErrorOutput());
         }
     }
 }

@@ -1,36 +1,53 @@
 <?php
 
-namespace Kasifi\Gitascii;
+namespace Kasifi\Gitaski;
+
+use Exception;
 
 class AsciiHelper
 {
-    private function displaySymbol($symbol)
+    /**
+     * @param array $symbol
+     *
+     * @return string
+     */
+    static public function renderSymbol($symbol)
     {
+        $output = '';
         foreach ($symbol as $row) {
             foreach ($row as $cell) {
                 switch ($cell) {
                     case 0:
-                        echo " ";
+                        $output .= " ";
                         break;
                     case 1:
-                        echo "░";
+                        $output .= "░";
                         break;
                     case 2:
-                        echo "▒";
+                        $output .= "▒";
                         break;
                     case 3:
-                        echo "▓";
+                        $output .= "▓";
                         break;
                     case 4:
-                        echo "█";
+                        $output .= "█";
                         break;
                 }
             }
-            echo "\n";
+            $output .= "\n";
         }
+
+        return $output;
     }
 
-    private function getSymbolFromAscii($ascii)
+    /**
+     * @param string $ascii
+     * @param array  $charMapping
+     *
+     * @return array
+     * @throws Exception
+     */
+    static public function generateSymbolFromAsciiString($ascii, $charMapping)
     {
         $symbol = [];
         $lines = explode("\n", $ascii);
@@ -43,7 +60,7 @@ class AsciiHelper
             $newCols = [];
             for ($i = 0; $i < strlen($cols); $i++) {
                 $col = $cols[$i];
-                $newCols[] = $this->getMappedValue($col);
+                $newCols[] = self::getMappedValue($col, $charMapping);
             }
             $symbol[] = $newCols;
         }
@@ -56,15 +73,18 @@ class AsciiHelper
      *
      * @return string
      */
-    private function getAscii($string)
+    public static function generateAsciiFromText($string)
     {
-        $ascii = file_get_contents('http://artii.herokuapp.com/make?text=' . urlencode($string) . '&font=' . $this->font);
+        $lineBreaks = 0;
+        $font = 'banner3';
+
+        $ascii = file_get_contents('http://artii.herokuapp.com/make?text=' . urlencode($string) . '&font=' . $font);
         $lines = explode("\n", $ascii);
         $width = count($lines[0]);
 
-        if ($this->lineBreaks > 0) {
+        if ($lineBreaks > 0) {
             $more = '';
-            for ($i = 0; $i < $this->lineBreaks; $i++) {
+            for ($i = 0; $i < $lineBreaks; $i++) {
                 $more .= str_pad($more, $width) . "\n";
             }
             $ascii = $more . $ascii;
@@ -81,9 +101,16 @@ class AsciiHelper
         return $ascii;
     }
 
-    private function getSymbolFromJson($json)
+    /**
+     * @param array $parsedJson
+     * @param array $charMapping
+     *
+     * @return array
+     * @throws Exception
+     */
+    static public function generateSymbolFromJson($parsedJson, $charMapping)
     {
-        $lines = $json['layers'][0]['rows'];
+        $lines = $parsedJson['layers'][0]['rows'];
 
         $symbol = [];
         $width = count($lines[0]['cells']);
@@ -99,7 +126,7 @@ class AsciiHelper
                 $newCols = [];
                 foreach ($line['cells'] as $cell) {
                     $col = $cell[2];
-                    $newCols[] = $this->getMappedValue($col);
+                    $newCols[] = self::getMappedValue($col, $charMapping);
                 }
                 $symbol[] = $newCols;
             }
@@ -118,13 +145,19 @@ class AsciiHelper
         return $symbol;
     }
 
-    private function getMappedValue($col)
+    /**
+     * @param string $char
+     * @param array  $charMapping
+     *
+     * @return int
+     */
+    static public function getMappedValue($char, $charMapping)
     {
         $value = 0;
-        if (isset($this->valueMapping[$col])) {
-            $value = $this->valueMapping[$col];
+        if (isset($charMapping[$char])) {
+            $value = $charMapping[$char];
         } else {
-            if ($col == ' ') {
+            if ($char == ' ') {
                 $value = 0;
             }
         }

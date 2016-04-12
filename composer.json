@@ -1,5 +1,5 @@
 {
-    "name": "lucascherifi/gitascii",
+    "name": "lucascherifi/gitaski",
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Kasifi\\Gitascii\\": "src"
+            "Kasifi\\Gitaski\\": "src"
         }
     },
     "minimum-stability": "stable",
