@@ -25,5 +25,8 @@ before_install:
 
 install: composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
 
+script:
+  - phpunit --coverage-text
+
 notifications:
   email: lucas@cherifi.info
