@@ -64,8 +64,7 @@ class GitaskiCommand extends Command
                 'force',
                 null,
                 InputOption::VALUE_NONE,
-                'If set, the commits will be really pushed to the repository URL, else it run in dry-mode mode.',
-                false
+                'If set, the commits will be really pushed to the repository URL, else it run in dry-mode mode.'
             );
     }
 
