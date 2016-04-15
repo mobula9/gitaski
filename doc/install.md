@@ -1,8 +1,22 @@
 Installation
 ============
 
-Download the "gitaski" PHP Library (via composer)
--------------------------------------------------
+Download the "gitaski" PHP Library
+----------------------------------
+
+### A) Via a PHAR file
+
+```bash
+$ sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
+```
+
+##### On Windows
+
+```bash
+c:\> php -r "file_put_contents('gitaski', file_get_contents('https://git.io/vwIKT'));"
+```
+
+### B) Via composer (global access)
 
 Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
@@ -29,7 +43,7 @@ $ composer global update
 
 Enjoy !
 
-Remove this useless PHP Library (via composer)
-----------------------------------------------
+Remove this useless PHP Library (via composer global access)
+------------------------------------------------------------
 
 To remove this package, edit ~/.composer/composer.json and then run `composer global update`.

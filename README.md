@@ -7,32 +7,16 @@ The purpose of this repository is totally useless. It makes you as "an hardcoder
 
 Easy to use. In very little time, make your github commits list a "Funky" stuff.
 
-## Quick usage
+## Quick setup
 
 ### 1) Install
-
-#### Fast and furious way (phar version)
-
-##### On Linux and Mac OS X
 
 ```bash
 $ sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
 ```
-Check that "It works!": `gitaski run --help` else take a look at the full documentation [here](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md).
-
-##### On Windows
-
-```bash
-c:\> php -r "file_put_contents('symfony', file_get_contents('https://symfony.com/installer'));"
-```
-Check that "It works!": `gitaski run --help` else take a look at the full documentation [here](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md).
-
-#### Via composer (global)
-
-```bash
-$ composer global require lucascherifi/gitaski
-```
-Check that "It works!": `gitaski run --help` else take a look at the full documentation [here](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md).
+- Check that it works? `gitaski run --help`, else take a look at the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
+- For Windows users, see the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
+- Prefer using composer ? see the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 
 ### 2) Create an empty git repository
 
@@ -41,17 +25,17 @@ Check that "It works!": `gitaski run --help` else take a look at the full docume
 ### 3) Run the command:
 
 ```bash
-$ gitaski git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Enjoy --force
+$ gitaski git@github.com:<YOUR_PROFILE>/<EMPTY_CREATED_REPOSITORY>.git --use_text=Enjoy --force
 ```
-Adapt with you own values ("YOUR_PROFILE", "AN_EMPTY_REPOSITORY_ALREADY_CREATED" and "Enjoy").
+Adapt with you own values ("YOUR_PROFILE", "EMPTY_CREATED_REPOSITORY" and the text "Enjoy").
 
 ### 4) Enjoy!
 
 [![Enjoy](https://github.com/lucascherifi/gitaski/blob/master/doc/enjoy.png)](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 
-Make good use and do not hesitate to contribute to this project.
+Make good use and do not hesitate to contribute to this very useful project.
 
-More documentation
+Full documentation
 ------------------
 - [Install](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 - [Usage](https://github.com/lucascherifi/gitaski/blob/master/doc/usage.md)
