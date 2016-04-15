@@ -1,29 +1,33 @@
 language: php
 
-php:
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
-
 matrix:
-  fast_finish: true
+  include:
+  - php: 5.5
+  - php: 5.6
+    env:
+    - EXECUTE_DEPLOYMENT=true
+  - php: 7
+  - php: hhvm
   allow_failures:
-    - php: hhvm
+  - php: hhvm
 
 sudo: false
 
 cache:
   directories:
     - $HOME/.composer/cache
+    - vendor
 
 before_install:
+  - phpenv config-rm xdebug.ini
   - composer selfupdate
 
-install: composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+install:
+  - travis_retry composer install --no-interaction $COMPOSER_FLAGS
+  - composer info -i
 
 script:
   - phpunit --coverage-text
 
 notifications:
-  email: lucas@cherifi.info
+  email: true
