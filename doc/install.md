@@ -7,7 +7,7 @@ Download the "gitaski" PHP Library
 ### A) Via a PHAR file
 
 ```bash
-$ sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
+sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
 ```
 
 ##### On Windows
@@ -22,7 +22,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```bash
-$ composer global require lucascherifi/gitaski
+composer global require lucascherifi/gitaski
 ```
 
 This command requires you to have Composer installed globally, as explained
@@ -32,13 +32,13 @@ of the Composer documentation.
 Simply add this directory to your PATH in your ~/.bash_profile (or ~/.bashrc) like this:
 
 ```bash
-$ export PATH=~/.composer/vendor/bin:$PATH
+export PATH=~/.composer/vendor/bin:$PATH
 ```
 
 To keep your tools up to date, you simply do this:
 
 ```bash
-$ composer global update
+composer global update
 ```
 
 Enjoy !
