@@ -7,25 +7,26 @@ The purpose of this repository is totally useless. It makes you as "an hardcoder
 
 Easy to use. In very little time, make your github commits list a "Funky" stuff.
 
-## The quick and impressive "35 seconds" setup.
+## The quick and impressive "50 seconds" setup.
 
 ### 1) Create an empty git repository (about 15 sec)
 
 Just [click here](https://github.com/new), type something like "long-stories" then type "Enter". It's done, next step.
 
-### 2) Install Gitaski (about 10 sec)
+### 2) Install Gitaski (about 15 sec)
 
 ```bash
-sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
+composer global require lucascherifi/gitaski
+export PATH=~/.composer/vendor/bin:$PATH
 ```
 
-(requires PHP installed on your machine)
+(require PHP and composer installed on your machine)
 
 - Quick check: `gitaski run --help`, else take a look at the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 - Windows users? See the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
-- Prefer using composer? See the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
+- Prefer using phar? See the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 
-### 3) Run the command  (about 10 sec)
+### 3) Run the command  (about 20 sec)
 
 ```bash
 gitaski git@github.com:<YOUR_PROFILE>/<EMPTY_CREATED_REPOSITORY>.git --use_text=Enjoy --force
