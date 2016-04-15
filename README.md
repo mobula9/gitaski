@@ -43,6 +43,8 @@ Make good use and do not hesitate to contribute to this "very useful" project.
 sudo rm /usr/local/bin/gitaski
 ```
 
+Wants also to remove the pretty ascii art you draw? Just delete the Github repository you created.
+
 Full documentation
 ------------------
 - [Install](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
