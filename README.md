@@ -16,7 +16,7 @@ Easy to use. In very little time, make your github commits list a "Funky" stuff.
 ##### On Linux and Mac OS X
 
 ```bash
-$ sudo curl -LsS https://github.com/lucascherifi/gitaski/gitaski.phar -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
+$ sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
 ```
 Check that "It works!": `gitaski run --help` else take a look at the full documentation [here](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md).
 
