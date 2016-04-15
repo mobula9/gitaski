@@ -21,6 +21,7 @@
         "symfony/console": "^3.0",
         "symfony/finder": "^3.0",
         "symfony/process": "^3.0",
-        "symfony/yaml": "^3.0"
+        "symfony/yaml": "^3.0",
+        "padraic/phar-updater": "^1.0"
     }
 }
