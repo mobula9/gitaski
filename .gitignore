@@ -3,3 +3,5 @@
 gitaski.phar
 gitaski.phar.pubkey
 gitaski.phar.version
+.travis/build-key.pem
+.travis/secrets.tar
