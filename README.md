@@ -16,7 +16,7 @@ $ sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+
 ```
 - Check that it works? `gitaski run --help`, else take a look at the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 - For Windows users, see the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
-- Prefer using composer ? see the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
+- Prefer using composer? see the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 
 ### 2) Create an empty git repository
 
