@@ -1,5 +1,4 @@
 language: php
-
 matrix:
   include:
   - php: 5.5
@@ -10,24 +9,20 @@ matrix:
   - php: hhvm
   allow_failures:
   - php: hhvm
-
 sudo: false
-
 cache:
   directories:
-    - $HOME/.composer/cache
-    - vendor
-
+  - $HOME/.composer/cache
+  - vendor
 before_install:
-  - phpenv config-rm xdebug.ini
-  - composer selfupdate
-
+- openssl aes-256-cbc -K $encrypted_071e19cbf364_key -iv $encrypted_071e19cbf364_iv
+  -in .travis/secrets.tar.enc -out .travis/secrets.tar -d
+- phpenv config-rm xdebug.ini
+- composer selfupdate
 install:
-  - travis_retry composer install --no-interaction $COMPOSER_FLAGS
-  - composer info -i
-
+- travis_retry composer install --no-interaction $COMPOSER_FLAGS
+- composer info -i
 script:
-  - phpunit --coverage-text
-
+- phpunit --coverage-text
 notifications:
   email: true
