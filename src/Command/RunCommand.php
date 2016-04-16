@@ -24,13 +24,12 @@ class RunCommand extends Command
             ->setDescription('Build Github ASCII art')
             ->addArgument(
                 'github_repository_url',
-                InputArgument::OPTIONAL,
-                'Which github repository URL?'
+                InputArgument::REQUIRED,
+                'The github repository URL: Ex: git@github.com:you/your_fresh_repo.git'
             )
-            ->addOption(
-                'use_text',
-                null,
-                InputOption::VALUE_REQUIRED,
+            ->addArgument(
+                'text',
+                InputArgument::OPTIONAL,
                 'If set, the ascii art will be generated from this text.'
             )
             ->addOption(
@@ -61,10 +60,10 @@ class RunCommand extends Command
                 'README.md'
             )
             ->addOption(
-                'force',
+                'dry-run',
                 null,
                 InputOption::VALUE_NONE,
-                'If set, the commits will be really pushed to the repository URL, else it run in dry-mode mode.'
+                'If set, the commits will not be pushed to the repository URL.'
             );
     }
 
@@ -79,26 +78,26 @@ class RunCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $force = $input->getOption('force');
+        $force = !$input->getOption('dry-run');
         $githubRepositoryUrl = $input->getArgument('github_repository_url');
         $inputFilePath = $input->getOption('input_filepath');
         if (!file_exists($inputFilePath)) {
-            throw new Exception('Input file: '. $inputFilePath . ' was not found.');
+            throw new Exception('Input file: ' . $inputFilePath . ' was not found.');
         }
         $outputFilename = $input->getOption('output_filename');
 
         $commitsMessageYmlPath = $input->getOption('commit_list_yml_filepath');
         if (!file_exists($commitsMessageYmlPath)) {
-            throw new Exception('Commit message file: '.$commitsMessageYmlPath . ' was not found.');
+            throw new Exception('Commit message file: ' . $commitsMessageYmlPath . ' was not found.');
         }
         $commitMessages = Yaml::parse(file_get_contents($commitsMessageYmlPath));
 
         $gitaski = new GitAski($force, $githubRepositoryUrl, $inputFilePath, $outputFilename, $commitMessages);
         $gitaski->setIo($io);
 
-        $useText = $input->getOption('use_text');
-        if ($useText) {
-            $gitaski->writeText($useText);
+        $text = $input->getArgument('text');
+        if ($text) {
+            $gitaski->writeText($text);
         } else {
             $artworkPath = $input->getOption('artwork_path');
             if (!$artworkPath) {
