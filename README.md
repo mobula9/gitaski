@@ -16,22 +16,20 @@ Just [click here](https://github.com/new), type something like "long-stories" th
 ### 2) Install Gitaski (about 15 sec)
 
 ```bash
-composer global require lucascherifi/gitaski
-export PATH=~/.composer/vendor/bin:$PATH
+sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
 ```
-
-(require PHP and composer installed on your machine)
+(only require PHP installed on your machine)
 
 - Quick check: `gitaski run --help`, else take a look at the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 - Windows users? See the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
-- Prefer using phar? See the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
+- Prefer using composer (global mode)? See the [install documentation](https://github.com/lucascherifi/gitaski/blob/master/doc/install.md)
 
 ### 3) Run the command  (about 20 sec)
 
 ```bash
-gitaski git@github.com:<YOUR_PROFILE>/<EMPTY_CREATED_REPOSITORY>.git --use_text=Enjoy --force
+gitaski git@github.com:<YOUR_PROFILE>/<EMPTY_CREATED_REPOSITORY>.git enjoy
 ```
-Note: adapt with you own values (`YOUR_PROFILE`,`EMPTY_CREATED_REPOSITORY`,`Enjoy`)
+Note: adapt with you own values (`YOUR_PROFILE`,`EMPTY_CREATED_REPOSITORY`,`enjoy`)
 
 ### 4) Enjoy!
 
