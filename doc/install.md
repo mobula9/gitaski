@@ -10,6 +10,11 @@ Download the "gitaski" PHP Library
 sudo curl -LsS https://git.io/vwIKT -o /usr/local/bin/gitaski && sudo chmod a+x /usr/local/bin/gitaski
 ```
 
+Note : If you want to be updated with `gitaski self-update` command:
+```bash
+sudo curl -LsS http://lucascherifi.github.io/gitaski/gitaski.phar.pubkey -o /usr/local/bin/gitaski.pubkey
+```
+
 ##### On Windows
 
 ```bash
