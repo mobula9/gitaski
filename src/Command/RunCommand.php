@@ -44,14 +44,14 @@ class RunCommand extends Command
                 'f',
                 InputOption::VALUE_REQUIRED,
                 'If set, this file will be used to generate dummy content.',
-                realpath(__DIR__ . '/../Resources/fixtures/sample.md')
+                __DIR__ . '/../Resources/fixtures/sample.md'
             )
             ->addOption(
                 'commit_list_yml_filepath',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'If set, this file will be used to generate dummy content.',
-                realpath(__DIR__ . '/../Resources/fixtures/commit-messages.yml')
+                __DIR__ . '/../Resources/fixtures/commit-messages.yml'
             )
             ->addOption(
                 'output_filename',
@@ -83,13 +83,13 @@ class RunCommand extends Command
         $githubRepositoryUrl = $input->getArgument('github_repository_url');
         $inputFilePath = $input->getOption('input_filepath');
         if (!file_exists($inputFilePath)) {
-            throw new Exception($inputFilePath . ' file was not found.');
+            throw new Exception('Input file: '. $inputFilePath . ' was not found.');
         }
         $outputFilename = $input->getOption('output_filename');
 
         $commitsMessageYmlPath = $input->getOption('commit_list_yml_filepath');
         if (!file_exists($commitsMessageYmlPath)) {
-            throw new Exception($commitsMessageYmlPath . ' file was not found.');
+            throw new Exception('Commit message file: '.$commitsMessageYmlPath . ' was not found.');
         }
         $commitMessages = Yaml::parse(file_get_contents($commitsMessageYmlPath));
 

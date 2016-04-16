@@ -57,8 +57,8 @@ class GitProcessor
         $splitContent = file_get_contents($inputFilePath);
         $this->splitContent = explode(' ', $splitContent);
         $workspacePath = sys_get_temp_dir() . '/gitaski' . rand(0, 1000000);
-        mkdir($workspacePath);
-        $this->workspacePath = realpath($workspacePath);
+        $this->workspacePath = $workspacePath;
+        mkdir($this->workspacePath);
     }
 
     /**
