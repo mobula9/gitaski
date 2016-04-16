@@ -16,9 +16,11 @@ if (file_exists($a = __DIR__ . '/../../autoload.php')) {
 
 // import the Symfony Console Application
 use Kasifi\Gitaski\Command\RunCommand;
+use Kasifi\Gitaski\Command\SelfUpdateCommand;
 use Symfony\Component\Console\Application;
 
 $app = new Application();
 $app->add(new RunCommand());
+$app->add(new SelfUpdateCommand());
 $app->run();
 ?>
