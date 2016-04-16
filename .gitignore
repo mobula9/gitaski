@@ -1,5 +1,6 @@
 # PHAR
-/vendor/.travis/phar-private.pem
+/vendor/
+.travis/phar-private.pem
 gitaski.phar
 gitaski.phar.pubkey
 gitaski.phar.version
