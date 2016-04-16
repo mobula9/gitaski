@@ -1,7 +1,7 @@
 # Quick example
 
 ```bash
-$ gitaski run git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git --use_text=Hello --force
+$ gitaski run git@github.com:YOUR_PROFILE/AN_EMPTY_REPOSITORY_ALREADY_CREATED.git Hello --dry-run
 ```
 
 # Command usage
@@ -12,18 +12,18 @@ $ gitaski run --help
 
 ```bash
 Usage:
-  gitaski [options] [--] [<github_repository_url>]
+  run [options] [--] <github_repository_url> [<text>]
 
 Arguments:
-  github_repository_url                                    Which github repository URL?
+  github_repository_url                                    The github repository URL: Ex: git@github.com:you/your_fresh_repo.git
+  text                                                     If set, the ascii art will be generated from this text.
 
 Options:
-      --use_text=USE_TEXT                                  If set, the ascii art will be generated from this text.
       --artwork_path=ARTWORK_PATH                          If set, the JSON file at this path will be used instead of the text.
-  -f, --input_filepath=INPUT_FILEPATH                      If set, this file will be used to generate dummy content. [default: "/Users/lcherifi/projects/gitascii/src/Resources/fixtures/sample.md"]
-      --commit_list_yml_filepath=COMMIT_LIST_YML_FILEPATH  If set, this file will be used to generate dummy content. [default: "/Users/lcherifi/projects/gitascii/src/Resources/fixtures/commit-messages.yml"]
+  -f, --input_filepath=INPUT_FILEPATH                      If set, this file will be used to generate dummy content. [default: "(...)/sample.md"]
+      --commit_list_yml_filepath=COMMIT_LIST_YML_FILEPATH  If set, this file will be used to generate dummy content. [default: "(...)/commit-messages.yml"]
       --output_filename=OUTPUT_FILENAME                    If set, this filename will be used for the commited file. [default: "README.md"]
-      --force                                              If set, the commits will be really pushed to the repository URL, else it run in dry-mode mode.
+      --dry-run                                            If set, the commits will not be pushed to the repository URL.
   -h, --help                                               Display this help message
   -q, --quiet                                              Do not output any message
   -V, --version                                            Display this application version
